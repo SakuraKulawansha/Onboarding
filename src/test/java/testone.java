@@ -17,26 +17,26 @@ import static org.testng.Assert.assertTrue;
 public class testone
 {
     @Test
-
     public void Test1 ()
-
     {
         try
         {
             System.setProperty("webdriver.gecko.driver", "C:\\JavaProjects\\geckodriver.exe");
             WebDriver driver = new FirefoxDriver();
-            //WebDriver mx = new FirefoxDriver();
+
             driver.manage().window().maximize();
             driver.get("http://blazedemo.com/");
+
+            //flight search
             Select fromflight = new Select(driver.findElement(By.name("fromPort")));
             fromflight.selectByVisibleText("Boston");
             Select toFlight = new Select(driver.findElement(By.name("toPort")));
             toFlight.selectByVisibleText("London");
-
             WebDriverWait wait = new WebDriverWait(driver, 10);
             WebElement findbtn = driver.findElement(By.xpath("//html/body/div[3]/form/div/input"));
             findbtn.click();
 
+            //choosing option 2
             WebDriverWait wait1 = new WebDriverWait(driver, 25);
             WebElement flight2 = driver.findElement(By.xpath("//html/body/div[2]/table/tbody/tr[2]/td[1]/input"));
             flight2.click();
@@ -52,25 +52,22 @@ public class testone
             state.sendKeys("Colombo");
             WebElement zip = driver.findElement(By.id("zipCode"));
             zip.sendKeys("12563");
-
             Select payment = new Select(driver.findElement(By.name("cardType")));
             payment.selectByVisibleText("Visa");
-
             WebDriverWait wait2 = new WebDriverWait(driver, 25);
-
             WebElement creditcd = driver.findElement(By.id("creditCardNumber"));
             creditcd.sendKeys("1254123698563695");
             WebElement cardname = driver.findElement(By.id("nameOnCard"));
             cardname.sendKeys("K K K jhon");
             driver.findElement(By.id("rememberMe")).click();
 
+            //lastpage
             WebDriverWait wait3 = new WebDriverWait(driver, 10);
 
             WebElement purchbtn = driver.findElement(By.xpath("//html/body/div[2]/form/div[11]/div/input"));
             purchbtn.click();
 
             Assert.assertEquals("http://blazedemo.com/confirmation.php", driver.getCurrentUrl());
-
             driver.close();
             driver.quit();
 
@@ -80,7 +77,7 @@ public class testone
         catch (Exception ex)
         {
             ex.printStackTrace();
-            System.out.println("Something went wrong");
+            System.out.println("Test 01 Fail");
         }
     }
 
